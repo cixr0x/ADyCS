@@ -27,7 +27,7 @@ def askInput(message):
         return askInput("*Value must be a numeric integer value\n")
 
     if (val < 0):
-        return askInput("No negatives in ancient Roma, enter a positive number\n")
+        return askInput("No negatives in ancient Rome, enter a positive number\n")
 
     return val
 

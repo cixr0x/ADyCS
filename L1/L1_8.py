@@ -16,7 +16,7 @@ for x in inputArray:
 
 numberArray.sort()
 
-print (numberArray)
+#print (numberArray)
 
 def calcMean(numberList):
     sum = reduce(lambda a,b:float(a)+float(b), numberList)
@@ -35,8 +35,51 @@ def calcMedian(numberList):
     if (len(numberList)%2==0):
         return (numberList[int((len(numberList)-1)/2)] + numberList[int((len(numberList)-1)/2)+1]) /2 
     else:
-        return numberList[int((len(numberList)-1)/2)] 
+        return numberList[int((len(numberList)-1)/2)]
 
-print(calcMean(numberArray))
-print(calcStdDev(numberArray))
-print(calcMedian(numberArray))
+def calcQuartile(numberList, q):
+    if (int(q) != 1 and int(q)!=3):
+        print ("Not a valid quartile, available options are 1 and 3  representing Q1 and Q3 respectively")
+        return
+    n= len(numberList)
+    index = ((q/4)*(n+1))-1
+    #print(index - int(index))
+    if (index - int(index) != 0):
+        return (numberList[int(index)] + numberList[int(index+1)])/2
+    else:
+        return numberList[int(math.ceil(index))]
+
+#following algorithm found in https://goodcalculators.com/percentile-calculator/
+def calcPercentile(numberList, p):
+    try:
+        p = int(p)
+    except:
+        print ("Percentile must be an integer number")
+        return 
+    if p < 1 or p>100:
+        print ("Percentile must be a number between 1 and 100")
+        return
+
+    n= len(numberList)
+    index = ((p/100)*(n))-1
+    #print(index)
+    if (index - int(index) == 0.5):
+        return (numberList[int(index)] + numberList[int(index+1)])/2
+    else:
+        return numberList[int(math.ceil(index))]
+
+
+print("Mean:" +str(calcMean(numberArray)))
+print("Std Dev:" + str(calcStdDev(numberArray)))
+print("Median: " +str(calcMedian(numberArray)))
+print("Quartile Q1: "+ str(calcQuartile(numberArray, 1 )))
+print("Quartile Q2: "+ str(calcQuartile(numberArray, 3 )))
+
+perc = input("Please enter a percentile value to calculate\n")
+
+try:
+    perc = int(perc)
+    print(str(perc)+" percentile: "+str(calcPercentile(numberArray, perc)))
+except:
+    print("Percentile value is not valid")
+

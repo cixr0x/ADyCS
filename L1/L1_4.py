@@ -24,6 +24,5 @@ def calcStdDev(numberList):
     return math.sqrt(div)
 
 
-print (calcStdDev([4, 9, 11, 12, 17, 5, 8, 12, 14]))
-print (calcStdDev(sample1))
-print (calcStdDev(sample2))
+print ("Sample1: " +str(calcStdDev(sample1)))
+print ("Sample2: " +str(calcStdDev(sample2)))
