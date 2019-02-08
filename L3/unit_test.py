@@ -84,6 +84,16 @@ class MathTest(unittest.TestCase):
             pow('a', 10)
 
     def test_filecmp(self):
+        txt1 = open('unitTestTxt1.txt', 'w')
+        txt1.write("123456789")
+        txt2 = open('unitTestTxt2.txt', 'w')
+        txt2.write("0000123456789\n")
+        txt3 = open('unitTestTxt3.txt', 'w')
+        txt3.write("123456789")
+
+        txt1.close()
+        txt2.close()
+        txt3.close()
         self.assertTrue(file_compare(
             "filecmp_test1.txt", "filecmp_test1.txt"))
         self.assertFalse(file_compare(
@@ -107,6 +117,21 @@ class MathTest(unittest.TestCase):
             file_compare(None, "filecmp_test3.txt")
         with self.assertRaises(OSError):
             file_compare(-10, "filecmp_test3.txt")
+        self.assertFalse(file_compare(
+            "unitTestTxt1.txt", "unitTestTxt2.txt"))
+        self.assertTrue(file_compare(
+            "unitTestTxt1.txt", "unitTestTxt1.txt"))
+        self.assertTrue(file_compare(
+            "unitTestTxt1.txt", "unitTestTxt3.txt"))
+        self.assertTrue(file_compare(
+            "unitTestTxt1.txt", "unitTestTxt3.txt"))
+        self.assertFalse(file_compare(True, True))
+        self.assertFalse(file_compare(True, False))
+        self.assertFalse(file_compare(False, False))
+        with self.assertRaises(FileNotFoundError):
+            file_compare("unitTestTxt1.txt", "unitTestTxt4.txt")
+        with self.assertRaises(OSError):
+            file_compare(3, 3)
 
     def test_time_clock(self):
         time1 = time_clock()
