@@ -37,6 +37,7 @@ def calcMedian(numberList):
     else:
         return numberList[int((len(numberList)-1)/2)]
 
+#Function than calculates the quartile
 def calcQuartile(numberList, q):
     if (int(q) != 1 and int(q)!=3):
         print ("Not a valid quartile, available options are 1 and 3  representing Q1 and Q3 respectively")
