@@ -41,28 +41,3 @@ class Directory:
             for key, val in user.items():
                 info = info+(f"{key}: {val}, ")
             print(info)
-
-
-print("**Created directory")
-myDir = Directory()
-print("**Adding users to directory")
-myDir.new("Juan", "Calle 13", "33225566", "eljuan@dominio.com")
-myDir.new("Pedro", "Av Idayvuelta", "33492333", "elpedro@mismodominio.com")
-myDir.new("Maria", "Av Siempreviva", "32435465", "maria@mainstream.com")
-print("**Printing directory")
-myDir.print()
-print("**Writing directory to file")
-myDir.writeToFile('dir.txt')
-
-print("**Created new directory")
-otherDir = Directory()
-print("**Printing new directory")
-otherDir.print()
-print("**Loading file into new directory")
-otherDir.readFromFile('dir.txt')
-print("**Printing new directory again")
-otherDir.print()
-
-print("**Finding user with name 'Maria' and printing her email")
-maria = myDir.findBy("name", "Maria")
-print(maria["email"])

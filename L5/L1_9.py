@@ -14,24 +14,16 @@ symbols = {
     "I":1
 }
 
-def askInput(message):
-    userInput = input(message)
-    
-    if userInput == "exit":
-        quit()
+def checkInput(userInput):
+    if (type(userInput) !=int):
+        raise ValueError("*Value must be a numeric integer value\n")
 
-    try:
-        val = int(userInput)
-        
-    except ValueError:
-        return askInput("*Value must be a numeric integer value\n")
+    if (userInput < 0):
+        raise ValueError("No negatives in ancient Rome, enter a positive number\n")
 
-    if (val < 0):
-        return askInput("No negatives in ancient Rome, enter a positive number\n")
-
-    return val
 
 def toRoman(number):
+    checkInput(number)
     roman = ""
     for symbol in symbols:
         while number > 0 and symbols[symbol]<=number:
@@ -39,10 +31,3 @@ def toRoman(number):
                 roman+=symbol
                 number-=symbols[symbol]
     return roman
-
-def main():
-    decimal = askInput("Enter a decimal number to conver to roman numeral, 'exit' to exit program\n")
-    print (toRoman(decimal))
-    main()
-
-main()
