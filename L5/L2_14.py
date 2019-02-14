@@ -4,9 +4,10 @@ class MyPowerList:
         if type(initialList) is list:
             self.pList = initialList
         else:
-            print("Constuctor parameter is not a list")
+            raise ValueError("Constuctor parameter is not a list")
 
-    def addItem(self, item):
+    
+    '''def addItem(self, item):
         self.pList.append(item)
 
     def removeItem(self, index):
@@ -33,7 +34,7 @@ class MyPowerList:
     def writeToFile(self, path):
         with open(path, 'w') as f:
             for item in self.pList:
-                f.write("%s " % item)
+                f.write("%s " % item)'''
 
     def readFromFile(self, path):
         with open(path, 'r') as f:
